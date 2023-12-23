@@ -1,0 +1,10 @@
+; Copy Folder Path
+^!c:: ; ctrl alt c
+IfWinActive, ahk_class CabinetWClass ; Explorer window
+{
+    ControlGetText, folderPath, Edit1
+    Clipboard := "" ; Set the clipboard to an empty string
+    StringReplace, clipboard, folderPath, \, /, All
+    MsgBox, Folder path copied to clipboard:
+    return
+}

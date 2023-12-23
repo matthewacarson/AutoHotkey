@@ -1,0 +1,28 @@
+; Initialize the script by calling the PromptForTime subroutine
+GoSub, PromptForTime
+return
+
+PromptForTime:
+    InputBox, RunTime, Enter Run Time (in minutes), Please enter the desired run time.
+    if ErrorLevel ; Check if the user pressed the Cancel button
+        ExitApp
+
+    ; Calculate the time to run in milliseconds
+    RunTimeMS := RunTime * 60000 ; 60000 milliseconds = 1 minute
+
+    SetTimer, RunScript, % RunTimeMS
+return
+
+RunScript:
+    MsgBox, The script has been running for %RunTime% minutes. It's time to do something!
+    ExitApp
+return
+
+
+ReplaceSpaces:
+    ; Remove formatting
+    Clipboard = %Clipboard%
+    ; Replace carriage returns with spaces
+    StringReplace Clipboard, Clipboard, %A_Space% `r`n, %A_Space%, All
+    StringReplace Clipboard, Clipboard, `r`n, %A_Space%, All
+return
