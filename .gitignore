@@ -2,4 +2,8 @@
 *
 
 !.ahk
+!.bak
 !.gitignore
+!.gitattributes
+!.md
+!/AdvancedWindowSnap/
