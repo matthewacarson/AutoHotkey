@@ -7,32 +7,43 @@
 return
 
 ReplaceSlashes:
+
+    ; Assign clipboard contents to a variable
+    ; - This prevents overwriting the original clipboard -
     clipboardVar := clipboard
 
     ; ;;;;;;;;;;;;; diagnostics ;;;;;;;;;;;;;;;;;; ;
-    ; MsgBox, currently: %clipboardVar%
+    ; MsgBox, initial: %clipboardVar%
     ; out := SubStr(clipboardVar, -0) = "\"
     ; out := SubStr(clipboardVar, 1, StrLen(clipboardVar) - 1)
     ; MsgBox, %out%
 
     ; ;;;;;;;;;;;;;; subroutine starts here ;;;;;;;; ;
     if InStr(clipboardVar, """") {
-        ; remove any doublequotes
-        StringReplace, clipboardVar, clipboardVar, ", , All
-        ; MsgBox, removed double quotes ; for diagnostic purposes
+        ; remove any double quotes
+        StringReplace, clipboardVar2, clipboardVar, ", , All
+    } else {
+        clipboardVar2 := clipboardVar
     }
-    if (SubStr(clipboardVar, -0) = "\") {
+
+    ; MsgBox, no quotes: %clipboardVar2% ; diagnostic purposes
+
+    if (SubStr(clipboardVar2, -0) = "\") {
         ; Remove the trailing backslash
-        clipboardVar := SubStr(clipboardVar, 1, StrLen(clipboardVar) - 1)
-        ; MsgBox, removed backslash ; for diagnostic purposes
+        clipboardVar3 := SubStr(clipboardVar2, 1, StrLen(clipboardVar2) - 1)
+    } else {
+        clipboardVar3 := clipboardVar2
     }
-    if InStr(clipboardVar, ".") {
+
+    ; MsgBox, remove last back slash: %clipboardVar3% ; diagnostic purposes
+
+    if InStr(clipboardVar3, ".") {
         ; Split the clipboard content using backslashes
-        StringSplit, parts, clipboardVar, \
+        StringSplit, parts, clipboardVar3, \
 
         ; Reconstruct the path without the last part
-        ; Reconstruct the path without the last part
         newPath := {}
+        ; MsgBox, %parts0% ; check the length/number of values in the array
         Loop, % parts0 - 1
             if (A_Index > 1) {
                 newPath := newPath "/" parts%A_Index%
@@ -41,10 +52,10 @@ ReplaceSlashes:
             }
     } else {
         ; Replace backslashes with forward slashes
-        StringReplace, newPath, clipboardVar, \, /, All
+        StringReplace, newPath, clipboardVar3, \, /, All
     }
+    ; MsgBox, final: %newPath% ; diagnostic purposes
     Send %newPath%
-    ; MsgBox, %newPath% ; for diagnostic purposes
 return
 
 
