@@ -8,3 +8,5 @@ OnKeyDown(key) {
 
 ; Exit script on Escape key press
 Esc::ExitApp
+
+; github test comment
