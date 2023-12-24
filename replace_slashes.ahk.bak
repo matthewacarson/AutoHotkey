@@ -2,7 +2,7 @@
 ; SetTimer, ReplaceSlashes, 800
 ; return
 
-^!v:: ; ctrl alt c
+^!v:: ; ctrl alt v
     Gosub, ReplaceSlashes
 return
 

@@ -1,15 +1,16 @@
 ﻿;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Remove carriage returns and formatting from text string AHK v1.0 ;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+#SingleInstance Force
+
 #Persistent
-SetTimer, ReplaceSpaces, 500
+SetTimer, RemoveCarriageReturns, 500
 return
 
-; duration := 10 * 60 * 2 ; 10 minutes * 60 seconds * 2 (for running twice)
-;runs := 0
 
-ReplaceSpaces:
-    ; runs := runs + 1
+RemoveCarriageReturns:
+
+    runs := runs + 1
 	; Remove formatting
 	Clipboard=%Clipboard%
 	; Replace carriage returns with spaces

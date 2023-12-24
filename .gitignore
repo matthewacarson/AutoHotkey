@@ -1,9 +1,10 @@
 /*
 *
 
-!.ahk
-!.bak
-!.gitignore
-!.gitattributes
-!.md
+!/*.gitignore
+!/*.ahk
+!/*.bak
+!/*.gitignore
+!/*.gitattributes
+!/*.md
 !/AdvancedWindowSnap/

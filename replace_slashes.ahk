@@ -1,3 +1,4 @@
+#SingleInstance Force
 ; #Persistent
 ; SetTimer, ReplaceSlashes, 800
 ; return
