@@ -1,0 +1,21 @@
+#SingleInstance Force
+
+; Example usage
+wd := "C:\Users\madou\OneDrive - UCLA IT Services\3)_SOC-Honors\NLRB_R_Petitions\CSVs\"
+file1 := wd "NLRB_contacts_edit_this.xlsx"
+file2 := wd "filings_construction.xlsx"
+AreFilesIdentical(file1, file2)
+
+; Function to check if two files are identical
+AreFilesIdentical(file1, file2) {
+    ; Read the contents of both files
+    FileRead, content1, %file1%
+    FileRead, content2, %file2%
+
+    ; Compare the contents byte by byte
+    if (content1 = content2) {
+        MsgBox, The files are identical.
+    } else {
+        MsgBox, The files are not identical.
+    }
+}
