@@ -3,22 +3,19 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 #SingleInstance Force
 
-#Persistent
-SetTimer, RemoveCarriageReturns, 500
+; #Persistent
+; SetTimer, RemoveCarriageReturns, 500
+; return
+
+; ctrl alt shift r
+^+!r::
+    Clipboard := StrReplace(Clipboard, "`r`n", " ") ; Replace carriage return and line feed with space
+    Clipboard := StrReplace(Clipboard, "`r", " ")   ; Replace remaining carriage returns with space
+    Clipboard := RegExReplace(Clipboard, "[ \t]+", " ") ; Replace consecutive spaces and tabs with a single space
+	Send ^v
 return
 
 
-RemoveCarriageReturns:
-
-    runs := runs + 1
-	; Remove formatting
-	Clipboard=%Clipboard%
-	; Replace carriage returns with spaces
-	StringReplace Clipboard, Clipboard, %A_Space% `r`n, %A_Space%, All
-	StringReplace Clipboard, Clipboard, `r`n, %A_Space%, All
-	;    if elapsed >= duration
-    ;    ExitApp
-return
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; #Requires AutoHotkey v2.0 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
